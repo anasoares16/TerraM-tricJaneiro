@@ -1,30 +1,44 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import Pricing from './components/Pricing'
-import Testimonials from './components/Testimonials'
-import Footer from './components/Footer'
-import Questionario from "./components/Questionario"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Features from "./components/Features";
+import Pricing from "./components/Pricing";
+import Testimonials from "./components/Testimonials";
+import Footer from "./components/Footer";
+import Questionario from "./components/Questionario";
+import LoginSingup from "./components/LoginSingup/LoginSingup";
+
+function Home() {
+  return (
+    <>
+      <Hero />
+      <Features />
+      <Pricing />
+      <Testimonials />
+      <Questionario />
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      <Navbar />
+    <Router>
+      <div className="bg-slate-950 text-white min-h-screen flex flex-col">
+        
+        <Navbar />
 
-      <Hero />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LoginSingup />} />
+          </Routes>
+        </div>
 
-      <Features />
+        <Footer />
 
-      <Pricing />
-
-      <Testimonials />
-
-      
-      <Questionario />
-
-      <Footer />
-    </div>
-  )
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
