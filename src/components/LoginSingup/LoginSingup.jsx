@@ -16,7 +16,7 @@ export default function LoginSingup() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // 🔥 SIGN UP
+  //  SIGN UP
   const handleSignUp = async () => {
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -36,7 +36,7 @@ export default function LoginSingup() {
     }
   };
 
-  // 🔥 LOGIN
+  // LOGIN
   const handleLogin = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
