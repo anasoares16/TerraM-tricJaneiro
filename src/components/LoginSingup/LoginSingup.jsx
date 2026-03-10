@@ -19,7 +19,11 @@ export default function LoginSingup() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+<<<<<<< HEAD
   // SIGN UP
+=======
+  //  SIGN UP
+>>>>>>> 1eafad678273342ceb3936838741941e86ef040d
   const handleSignUp = async () => {
     const { data, error } = await supabase.auth.signUp({
       email,
