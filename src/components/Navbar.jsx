@@ -18,6 +18,12 @@ export default function Navbar() {
           </li>
 
           <li>
+            <Link to="/questionario" className="hover:text-green-400 transition">
+              Diagnóstico
+            </Link>
+          </li>
+
+          <li>
             <Link to="/" className="hover:text-green-400 transition">
               Features
             </Link>
@@ -30,18 +36,13 @@ export default function Navbar() {
           </li>
 
           <li>
-            <Link to="/" className="hover:text-green-400 transition">
-              Testimonials
-            </Link>
-          </li>
-
-          <li>
             <Link to="/login" className="hover:text-green-400 transition">
               Login/Signup
             </Link>
           </li>
 
         </ul>
+
       </div>
     </nav>
   );

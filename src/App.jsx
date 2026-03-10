@@ -15,7 +15,6 @@ function Home() {
       <Features />
       <Pricing />
       <Testimonials />
-      <Questionario />
     </>
   );
 }
@@ -24,13 +23,14 @@ function App() {
   return (
     <Router>
       <div className="bg-slate-950 text-white min-h-screen flex flex-col">
-        
+
         <Navbar />
 
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<LoginSingup />} />
+            <Route path="/questionario" element={<Questionario />} />
           </Routes>
         </div>
 

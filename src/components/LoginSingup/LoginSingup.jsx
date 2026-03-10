@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 
 export default function LoginSingup() {
+  const navigate = useNavigate();
+
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const [name, setName] = useState("");
@@ -16,7 +19,7 @@ export default function LoginSingup() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // 🔥 SIGN UP
+  // SIGN UP
   const handleSignUp = async () => {
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -31,12 +34,12 @@ export default function LoginSingup() {
     if (error) {
       alert("Erro: " + error.message);
     } else {
-      alert("Conta criada com sucesso!");
+      alert("Conta criada. Verifique seu email para confirmar.");
       console.log(data);
     }
   };
 
-  // 🔥 LOGIN
+  // LOGIN
   const handleLogin = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -46,27 +49,28 @@ export default function LoginSingup() {
     if (error) {
       alert("Erro: " + error.message);
     } else {
-      alert("Login realizado com sucesso!");
       console.log(data);
+      alert("Login realizado com sucesso!");
+
+      // redireciona para o questionário
+      navigate("/questionario");
     }
   };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden bg-slate-950">
-      
-      {/* Glow */}
+
       <div
         className="absolute inset-0 opacity-30"
         style={{
           background: `radial-gradient(
             600px circle at ${mousePosition.x}px ${mousePosition.y}px,
-            rgba(59, 130, 246, 0.15),
+            rgba(59,130,246,0.15),
             transparent 40%
           )`,
         }}
       />
 
-      {/* Card */}
       <div className="relative z-10 w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
 
         <h1 className="text-3xl font-bold text-white text-center mb-8">
@@ -75,13 +79,8 @@ export default function LoginSingup() {
 
         <div className="space-y-5">
 
-          {/* Nome */}
-          <div className="flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus-within:ring-2 focus-within:ring-blue-500">
-            <img
-              src="/account.png"
-              alt="Usuário"
-              className="w-5 h-5 mr-3 opacity-70 pointer-events-none"
-            />
+          <div className="flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+            <img src="/account.png" className="w-5 h-5 mr-3 opacity-70"/>
             <input
               type="text"
               placeholder="Nome"
@@ -91,13 +90,8 @@ export default function LoginSingup() {
             />
           </div>
 
-          {/* Email */}
-          <div className="flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus-within:ring-2 focus-within:ring-blue-500">
-            <img
-              src="/gmail.png"
-              alt="Email"
-              className="w-5 h-5 mr-3 opacity-70 pointer-events-none"
-            />
+          <div className="flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+            <img src="/gmail.png" className="w-5 h-5 mr-3 opacity-70"/>
             <input
               type="email"
               placeholder="Email"
@@ -107,13 +101,8 @@ export default function LoginSingup() {
             />
           </div>
 
-          {/* Senha */}
-          <div className="flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus-within:ring-2 focus-within:ring-blue-500">
-            <img
-              src="/password.png"
-              alt="Senha"
-              className="w-5 h-5 mr-3 opacity-70 pointer-events-none"
-            />
+          <div className="flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+            <img src="/password.png" className="w-5 h-5 mr-3 opacity-70"/>
             <input
               type="password"
               placeholder="Senha"
